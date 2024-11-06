@@ -1,12 +1,10 @@
 package com.es.diecines.controller;
 
+import com.es.diecines.dto.SesionCreateDTO;
 import com.es.diecines.dto.SesionDTO;
 import com.es.diecines.service.SesionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,17 @@ public class SesionController {
         if (id == null || id.isBlank()) return null;
 
         SesionDTO sesionDTO = sesionService.getById(id);
+
+        return sesionDTO;
+    }
+
+    @PostMapping("/")
+    public SesionDTO insert(@RequestBody SesionCreateDTO sesionCreateDTO) {
+        if (sesionCreateDTO == null) {
+            return null;
+        }
+
+        SesionDTO sesionDTO = sesionService.insert(sesionCreateDTO);
 
         return sesionDTO;
     }

@@ -2,6 +2,7 @@ package com.es.diecines.utils;
 
 import com.es.diecines.dto.PeliculaCreateDTO;
 import com.es.diecines.dto.PeliculaDTO;
+import com.es.diecines.dto.SesionCreateDTO;
 import com.es.diecines.dto.SesionDTO;
 import com.es.diecines.model.Pelicula;
 import com.es.diecines.model.Sesion;
@@ -69,6 +70,16 @@ public class Mapper {
         Sesion s = new Sesion();
 
         s.setId(sDto.getId());
+        s.setPelicula(p);
+        s.setRoomId(sDto.getRoomId());
+        s.setDate(sDto.getDate());
+
+        return s;
+    }
+
+    public static Sesion DtoToEntity(SesionCreateDTO sDto, Pelicula p) {
+        Sesion s = new Sesion();
+
         s.setPelicula(p);
         s.setRoomId(sDto.getRoomId());
         s.setDate(sDto.getDate());
