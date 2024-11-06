@@ -8,11 +8,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/sesiones")
 public class SesionController {
     @Autowired
     private SesionService sesionService;
+
+    @GetMapping("/")
+    public List<SesionDTO> getAll() {
+        return sesionService.getAll();
+    }
 
     @GetMapping("/{id}")
     public SesionDTO getById(@PathVariable String id) {
