@@ -7,7 +7,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "sesiones")
 public class Sesion {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +23,8 @@ public class Sesion {
 
     public Sesion(){}
 
-    public Sesion(Pelicula pelicula, Long roomId, LocalDate date) {
+    public Sesion(Long id, Pelicula pelicula, Long roomId, LocalDate date) {
+        this.id = id;
         this.pelicula = pelicula;
         this.roomId = roomId;
         this.date = date;
