@@ -35,4 +35,20 @@ public class Mapper {
 
         return pelicula;
     }
+
+    public static Pelicula DTOtoEntity(PeliculaDTO peliculaDTO) {
+        Pelicula pelicula = new Pelicula();
+
+        pelicula.setDirector(peliculaDTO.getDirector());
+        pelicula.setRating(peliculaDTO.getRating());
+        pelicula.setScreenshot(peliculaDTO.getScreenshot());
+        pelicula.setTime(peliculaDTO.getTime());
+        pelicula.setSynopsis(peliculaDTO.getSynopsis());
+        pelicula.setTitle(peliculaDTO.getTitle());
+        pelicula.setPosterImage(peliculaDTO.getPosterImage());
+        pelicula.setTrailer(peliculaDTO.getTrailer());
+        pelicula.setId(peliculaDTO.getId());
+
+        return pelicula;
+    }
 }

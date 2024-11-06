@@ -48,6 +48,13 @@ public class PeliculaController {
         return peliculaDTO;
     }
 
+    @PutMapping("/")
+    public PeliculaDTO update(@RequestBody PeliculaDTO peliculaDTO) {
+        PeliculaDTO updatedPeliculaDTO = peliculaService.update(peliculaDTO);
+
+        return updatedPeliculaDTO;
+    }
+
     @DeleteMapping("/{id}")
     public boolean delete(@PathVariable String id) {
         if (id == null || id.isBlank()) return false;

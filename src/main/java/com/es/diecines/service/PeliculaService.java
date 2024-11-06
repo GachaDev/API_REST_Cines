@@ -82,6 +82,21 @@ public class PeliculaService {
         return peliculaDTO;
     }
 
+    public PeliculaDTO update(PeliculaDTO peliculaDTO) {
+        Pelicula pelicula = Mapper.DTOtoEntity(peliculaDTO);
+        PeliculaDTO exist = getById(peliculaDTO.getId().toString());
+
+        if (exist == null) {
+            return null;
+        }
+
+        peliculaRepository.save(pelicula);
+
+        PeliculaDTO updatedPeliculaDTO = Mapper.entityToDTO(pelicula);
+
+        return updatedPeliculaDTO;
+    }
+
     public boolean delete(String id) {
         Long idL = 0L;
 
