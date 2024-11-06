@@ -21,6 +21,11 @@ public class SesionController {
         return sesionService.getAll();
     }
 
+    @GetMapping("/hoy")
+    public List<SesionDTO> getHoy() {
+        return sesionService.getHoy();
+    }
+
     @GetMapping("/{id}")
     public SesionDTO getById(@PathVariable String id) {
         if (id == null || id.isBlank()) return null;

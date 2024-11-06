@@ -48,4 +48,17 @@ public class SesionService {
 
         return null;
     }
+
+    public List<SesionDTO> getHoy() {
+        List<Sesion> sesiones = sesionRepository.getHoy();
+        List<SesionDTO> sesionesDTOS = new ArrayList<>();
+
+        sesiones.forEach(sesion -> {
+            SesionDTO sesionDTO = Mapper.entityToDTO(sesion);
+
+            sesionesDTOS.add(sesionDTO);
+        });
+
+        return sesionesDTOS;
+    }
 }
