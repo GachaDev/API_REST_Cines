@@ -1,8 +1,8 @@
 package com.es.diecines.dto;
 
+import jakarta.persistence.Column;
 
-public class PeliculaDTO {
-    private Long id;
+public class PeliculaCreateDTO {
     private String title;
 
     private String director;
@@ -15,14 +15,15 @@ public class PeliculaDTO {
 
     private String screenshot;
 
+    @Column(length = 1000)
     private String synopsis;
 
+    @Column(nullable = false)
     private Double rating;
 
-    public PeliculaDTO() {}
+    public PeliculaCreateDTO() {}
 
-    public PeliculaDTO(Long id, String title, String director, String time, String trailer, String posterImage, String screenshot, String synopsis, Double rating) {
-        this.id = id;
+    public PeliculaCreateDTO(String title, String director, String time, String trailer, String posterImage, String screenshot, String synopsis, Double rating) {
         this.title = title;
         this.director = director;
         this.time = time;
@@ -31,14 +32,6 @@ public class PeliculaDTO {
         this.screenshot = screenshot;
         this.synopsis = synopsis;
         this.rating = rating;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
