@@ -43,4 +43,13 @@ public class SesionController {
 
         return sesionDTO;
     }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable String id) {
+        if (id == null || id.isBlank()) return false;
+
+        boolean deleted = sesionService.delete(id);
+
+        return deleted;
+    }
 }

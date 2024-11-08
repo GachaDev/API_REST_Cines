@@ -82,4 +82,19 @@ public class SesionService {
 
         return sesionDTO;
     }
+
+    public boolean delete(String id) {
+        Long idL = 0L;
+
+        try {
+            idL = Long.parseLong(id);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        sesionRepository.deleteById(idL);
+
+        return true;
+    }
 }

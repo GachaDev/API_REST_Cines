@@ -2,6 +2,7 @@ package com.es.diecines.service;
 
 import com.es.diecines.dto.PeliculaCreateDTO;
 import com.es.diecines.dto.PeliculaDTO;
+import com.es.diecines.error.BaseDeDatosException;
 import com.es.diecines.model.Pelicula;
 import com.es.diecines.repository.PeliculaRepository;
 import com.es.diecines.utils.Mapper;
@@ -36,10 +37,16 @@ public class PeliculaService {
             idL = Long.parseLong(id);
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            return null;
+            throw new NumberFormatException("La id debe de ser un número correcto");
         }
 
-        Pelicula pelicula = peliculaRepository.findById(idL).orElse(null);
+        Pelicula pelicula = null;
+
+        try {
+            pelicula = peliculaRepository.findById(idL).orElse(null);
+        } catch (Exception e) {
+            throw new BaseDeDatosException(idL + " id erroneo");
+        }
 
         if (pelicula != null) {
             PeliculaDTO peliculaDTO = Mapper.entityToDTO(pelicula);
