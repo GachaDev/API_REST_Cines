@@ -75,11 +75,22 @@ public class PeliculaController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable String id) {
-        if (id == null || id.isBlank()) return false;
+    public ResponseEntity<ErrorGenerico> delete(@PathVariable String id, HttpServletRequest request) {
+        try {
+            if (id == null || id.isBlank()) return new ResponseEntity<ErrorGenerico>(new ErrorGenerico("La id no puede estar vacia", request.getRequestURI()), HttpStatus.BAD_REQUEST);
 
-        boolean deleted = peliculaService.delete(id);
+            boolean deleted = peliculaService.delete(id);
 
-        return deleted;
+            if (deleted) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<ErrorGenerico>(new ErrorGenerico("La película con la id " + id + " no existe", request.getRequestURI()), HttpStatus.NOT_FOUND);
+            }
+        } catch (NumberFormatException e) {
+            ErrorGenerico error = new ErrorGenerico(e.getMessage(), request.getRequestURI());
+
+            return new ResponseEntity<ErrorGenerico>(error, HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

@@ -111,7 +111,15 @@ public class PeliculaService {
             idL = Long.parseLong(id);
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            return false;
+            throw new NumberFormatException("La id debe de ser un número correcto");
+        }
+
+        try {
+            PeliculaDTO exist = getById(id);
+
+            if (exist == null) return false;
+        } catch (BaseDeDatosException e) {
+            throw new BaseDeDatosException(idL + " id erroneo");
         }
 
         peliculaRepository.deleteById(idL);
